@@ -1,0 +1,8 @@
+.message {
+  width: 50%;
+  margin: 0.3rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: blanchedalmond;
+  color: rgb(67, 67, 241);
+}
