@@ -6,3 +6,10 @@
   background-color: blanchedalmond;
   color: rgb(67, 67, 241);
 }
+
+.message__footer {
+  color: #000;
+  font-size: 0.8rem;
+  font-style: italic;
+  text-align: right;
+}
