@@ -1,10 +1,27 @@
 import { useEffect, useState, useCallback } from 'react';
-
+import './styles/App.css';
 import Form from './components/Form';
 import MessageList from './components/MessageList';
-
+import ChatList from './components/ChatList';
 import IMessage from './interfaces/Message';
+import IChat from './interfaces/Chat';
 import { AUTHORS } from './utils/consts';
+
+const chats: IChat[] = [
+  {
+    name: 'Friends',
+    id: '1'
+  },
+  {
+    name: 'Job',
+    id: '2'
+  },
+  {
+    name: 'Family',
+    id: '3'
+  }
+
+]
 
 
 function App() {
@@ -49,8 +66,13 @@ function App() {
 
   return (
     <div className="App">
-      <MessageList messageList={messageList} />
-      <Form onSubmit={sendMessage}></Form>
+      <div>
+        <ChatList chats={chats} />
+      </div>
+      <div>
+        <MessageList messageList={messageList} />
+        <Form onSubmit={sendMessage}></Form>
+      </div>
     </div>
   );
 }
