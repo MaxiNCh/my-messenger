@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState, useEffect, RefObject } from "react";
 
 import '../styles/Form.css';
 
@@ -9,10 +9,18 @@ interface IFormProps {
 function Form({ onSubmit }: IFormProps) {
   const [text, setText] = useState('');
 
+  const messageInput: RefObject<HTMLTextAreaElement> = useRef(null);
+
+  useEffect(() => {
+    messageInput.current?.focus();
+  })
+
   const onFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(text);
-    setText('');
+    if (text !== '') {
+      onSubmit(text);
+      setText('');
+    }
   }
 
   const onChange = (e: FormEvent<HTMLTextAreaElement>) => {
@@ -22,7 +30,7 @@ function Form({ onSubmit }: IFormProps) {
   return (
     <form className="msg-form" onSubmit={onFormSubmit}>
       <label className="msg-form__label" htmlFor="text">Введите текст сообщения</label>
-      <textarea className="msg-form__input" id="text" rows={5} value={text} onChange={onChange} />
+      <textarea ref={messageInput} className="msg-form__input" id="text" rows={5} value={text} onChange={onChange} />
       <input className="msg-form__submit" type="submit" value="Отправить" />
     </form>
   );
