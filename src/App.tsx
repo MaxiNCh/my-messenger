@@ -1,13 +1,44 @@
-import { useEffect, useState } from 'react';
-
-import Message from './components/Message';
+import { useEffect, useState, useCallback } from 'react';
+import './styles/App.css';
 import Form from './components/Form';
-
+import MessageList from './components/MessageList';
+import ChatList from './components/ChatList';
 import IMessage from './interfaces/Message';
+import IChat from './interfaces/Chat';
+import { AUTHORS } from './utils/consts';
+
+const chats: IChat[] = [
+  {
+    name: 'Friends',
+    id: '1'
+  },
+  {
+    name: 'Job',
+    id: '2'
+  },
+  {
+    name: 'Family',
+    id: '3'
+  }
+
+]
 
 
 function App() {
   const [messageList, setMessageList] = useState<IMessage[]>([]);
+
+  const addMessage = useCallback((newMessage: IMessage) => {
+    setMessageList([...messageList, newMessage]);
+  }, [messageList]);
+
+  const sendMessage = (text: string) => {
+    addMessage({
+      author: AUTHORS.person,
+      text,
+      date: new Date(),
+      id: `msg-id-${Date.now()}`
+    })
+  }
 
   useEffect(() => {
     let timeoutID: NodeJS.Timeout;
@@ -16,11 +47,12 @@ function App() {
       && messageList[messageList.length - 1].author !== 'Robot') {
 
       timeoutID = setTimeout(() => {
-        setMessageList((oldList) => [...oldList, {
-          author: 'Robot',
+        addMessage({
+          author: AUTHORS.robot,
           text: 'Response to your message',
-          date: new Date()
-        }])
+          date: new Date(),
+          id: `msg-id-${Date.now()}`
+        });
       }, 1500);
 
     }
@@ -30,22 +62,17 @@ function App() {
         clearTimeout(timeoutID)
       }
     };
-  }, [messageList])
-
-  const addMessage = (text: string): void => {
-    if (text) {
-      setMessageList((oldList) => [...oldList, {
-        author: 'Max',
-        text,
-        date: new Date()
-      }])
-    }
-  }
+  }, [messageList, addMessage])
 
   return (
     <div className="App">
-      {messageList.map((message) => <Message message={message} />)}
-      <Form onSubmit={addMessage}></Form>
+      <div>
+        <ChatList chats={chats} />
+      </div>
+      <div>
+        <MessageList messageList={messageList} />
+        <Form onSubmit={sendMessage}></Form>
+      </div>
     </div>
   );
 }
