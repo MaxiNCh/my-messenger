@@ -9,7 +9,7 @@ interface IFormProps {
   onSubmit(text: string): void
 }
 
-function Form({ onSubmit }: IFormProps) {
+function MessageForm({ onSubmit }: IFormProps) {
   const [text, setText] = useState('');
 
   const messageInput: RefObject<HTMLInputElement> = useRef(null);
@@ -51,4 +51,4 @@ function Form({ onSubmit }: IFormProps) {
   );
 }
 
-export default Form;
+export default MessageForm;

@@ -9,7 +9,7 @@ interface ChatListProps {
 function ChatList({ chats }: ChatListProps) {
   return (
     <List>
-      {chats.map((chat) => <ChatItem key={chat.id} name={chat.name} />)}
+      {chats.map((chat) => <ChatItem key={chat.id} chat={chat} />)}
     </List>
   );
 }
