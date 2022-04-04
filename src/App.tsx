@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
-import Chat from './pages/Chat';
+import Chats from './pages/Chats';
 import Home from './pages/Home';
-import Messages from './pages/Messages';
 import Profile from './pages/Profile';
 import './styles/App.css';
 
@@ -15,9 +14,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/chat" element={<Chat />} >
-          <Route path=":chatId" element={<Messages />} />
-        </Route>
+        <Route path="/chat" element={<Chats />} />
+        <Route path="/chat/:chatId" element={<Chats />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>

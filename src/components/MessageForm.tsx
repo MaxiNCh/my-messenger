@@ -36,7 +36,7 @@ function MessageForm({ onSubmit }: IFormProps) {
         inputRef={messageInput}
         id="text"
         sx={{ mb: 2, width: '100%' }}
-        label="Текст сообщения"
+        label="Message text"
         variant="outlined"
         color="secondary"
         size="small"
@@ -45,7 +45,7 @@ function MessageForm({ onSubmit }: IFormProps) {
       />
       <br />
       <Button type="submit" disabled={!text} size="small" color="secondary" variant="contained" endIcon={<SendIcon />}>
-        Отправить
+        Send
       </Button>
     </form>
   );
