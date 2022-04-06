@@ -1,0 +1,11 @@
+.chat-form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.create-btn {
+  display: flex;
+  align-items: center;
+}

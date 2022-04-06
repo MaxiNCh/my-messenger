@@ -9,7 +9,7 @@ interface IFormProps {
   onSubmit(text: string): void
 }
 
-function Form({ onSubmit }: IFormProps) {
+function MessageForm({ onSubmit }: IFormProps) {
   const [text, setText] = useState('');
 
   const messageInput: RefObject<HTMLInputElement> = useRef(null);
@@ -36,7 +36,7 @@ function Form({ onSubmit }: IFormProps) {
         inputRef={messageInput}
         id="text"
         sx={{ mb: 2, width: '100%' }}
-        label="Текст сообщения"
+        label="Message text"
         variant="outlined"
         color="secondary"
         size="small"
@@ -45,10 +45,10 @@ function Form({ onSubmit }: IFormProps) {
       />
       <br />
       <Button type="submit" disabled={!text} size="small" color="secondary" variant="contained" endIcon={<SendIcon />}>
-        Отправить
+        Send
       </Button>
     </form>
   );
 }
 
-export default Form;
+export default MessageForm;
