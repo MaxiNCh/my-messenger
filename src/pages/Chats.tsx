@@ -67,11 +67,12 @@ function Chats() {
   }
 
   function getLastElementId(array: IChat[]) {
-    return array.slice().splice(-1)[0].id;
+    return array.slice(-1)[0].id;
   }
 
   const deleteChat = useCallback((chatId) => {
-    setAllMessages((messages) => {
+    setAllMessages((oldMessages) => {
+      const messages = { ...oldMessages };
       delete messages[chatId];
       return messages;
     })
@@ -82,7 +83,9 @@ function Chats() {
   }, [allMessages, chatList]);
 
   const addMessage = useCallback((newMessage: IMessage, chatId: string) => {
-    setAllMessages({ ...allMessages, [chatId]: [...allMessages[chatId], newMessage] });
+    setAllMessages((oldMessages) => (
+      { ...oldMessages, [chatId]: [...allMessages[chatId], newMessage] }
+    ));
   }, [allMessages]);
 
   return (
