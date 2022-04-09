@@ -3,8 +3,7 @@ import IChatMessages from "../../interfaces/ChatMessages";
 import { addChat, removeChat } from "../chats/actionCreators";
 import { ADD_CHAT, REMOVE_CHAT } from "../chats/actionTypes";
 import { initialState as initialChats } from "../chats/reducer";
-import { addMessage } from './actionCreators';
-import { ADD_MESSAGE } from "./actionTypes";
+import { addMessage, ADD_MESSAGE } from './actionCreators';
 
 const actions = { addMessage, addChat, removeChat };
 type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
