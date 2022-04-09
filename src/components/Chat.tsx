@@ -9,28 +9,33 @@ import { AUTHORS } from "../utils/consts";
 import ClearIcon from '@mui/icons-material/Clear';
 import "../styles/Chat.css";
 import { Tooltip } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { selectMessageByChatId } from "../store/messages/selectors";
+import { addMessage } from "../store/messages/actionCreators";
+import { removeChat } from "../store/chats/actionCreators";
+import { shallowEqual } from "react-redux";
 
 interface MessagesProps {
-  chatMessages: IMessage[]
   chat: IChat,
-  addMessage(newMessage: IMessage, chatId: string): void
-  deleteChat(chatId: string): void
 }
 
-function Messages({ chatMessages, chat, addMessage, deleteChat }: MessagesProps) {
+function Messages({ chat }: MessagesProps) {
+  const dispatch = useAppDispatch();
   const timeoutID = useRef<NodeJS.Timeout>();
 
+  const chatMessages = useAppSelector(selectMessageByChatId(chat.id), shallowEqual);
+
   const sendMessage = (text: string) => {
-    addMessage({
+    dispatch(addMessage(chat.id, {
       author: AUTHORS.person,
       text,
       date: new Date(),
       id: `msg-id-${Date.now()}`
-    }, chat.id)
+    }))
   }
 
   const deleteClickHandler = () => {
-    deleteChat(chat.id);
+    dispatch(removeChat(chat.id));
   }
 
   useEffect(() => {
@@ -45,12 +50,12 @@ function Messages({ chatMessages, chat, addMessage, deleteChat }: MessagesProps)
 
     function sendReplyFromRobotWithDelay(delay = 1500) {
       timeoutID.current = setTimeout(() => {
-        addMessage({
+        dispatch(addMessage(chat.id, {
           author: AUTHORS.robot,
           text: 'Response to your message',
           date: new Date(),
           id: `msg-id-${Date.now()}`
-        }, chat.id);
+        }))
       }, delay);
     }
 
