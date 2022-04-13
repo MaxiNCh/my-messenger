@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useMemo, useRef } from "react";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
-import IChatMessages from "../interfaces/ChatMessages";
 import IChat from "../interfaces/Chat";
 import IMessage from "../interfaces/Message";
 import { AUTHORS } from "../utils/consts";
@@ -22,8 +20,8 @@ interface MessagesProps {
 function Messages({ chat }: MessagesProps) {
   const dispatch = useAppDispatch();
   const timeoutID = useRef<NodeJS.Timeout>();
-
-  const chatMessages = useAppSelector(selectMessageByChatId(chat.id), shallowEqual);
+  const getChatMessages = useMemo(() => selectMessageByChatId(chat.id), [chat.id]);
+  const chatMessages = useAppSelector(getChatMessages, shallowEqual);
 
   const sendMessage = (text: string) => {
     dispatch(addMessage(chat.id, {
