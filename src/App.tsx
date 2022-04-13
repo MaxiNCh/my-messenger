@@ -8,7 +8,6 @@ import Profile from './pages/Profile';
 import { store } from './store';
 import './styles/App.css';
 
-
 function App() {
 
   return (
@@ -25,8 +24,6 @@ function App() {
       </BrowserRouter>
     </Provider>
   )
-
 }
-
 
 export default App;
