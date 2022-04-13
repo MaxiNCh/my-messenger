@@ -7,14 +7,14 @@ import { addMessage, ADD_MESSAGE } from './actionCreators';
 
 const actions = { addMessage, addChat, removeChat };
 type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
-type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
+export type MessagesActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
 const initialState: IChatMessages = initialChats.reduce((acc: { [key: string]: [] }, chat: IChat) => {
   acc[chat.id] = [];
   return acc;
 }, {})
 
-export const messagesReducer = (state = initialState, { type, payload }: ActionTypes) => {
+export const messagesReducer = (state = initialState, { type, payload }: MessagesActionTypes) => {
   switch (type) {
     case ADD_MESSAGE: {
       return {
