@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Chats from './pages/Chats';
+import Holidays from './pages/Holidays';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import { store } from './store';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/chat" element={<Chats />} />
           <Route path="/chat/:chatId" element={<Chats />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/holidays" element={<Holidays />} />
         </Routes>
       </BrowserRouter>
     </Provider>

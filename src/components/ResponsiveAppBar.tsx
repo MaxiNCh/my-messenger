@@ -23,6 +23,10 @@ const pages = [
   {
     name: 'Profile',
     path: '/profile'
+  },
+  {
+    name: 'Holidays',
+    path: '/holidays'
   }
 ];
 
