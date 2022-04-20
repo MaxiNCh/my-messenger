@@ -14,18 +14,18 @@ function ChatForm() {
   const dispatch = useAppDispatch();
   const chats = useAppSelector(selectChats);
 
-  const createChat = useCallback((name) => {
-    const newId = getLastId(chats) + 1 + '';
-    dispatch(addChat({ name, id: newId }));
-  }, [chats]);
-
-  function getLastId(chats: IChat[]): number {
+  const getLastId = useCallback((chats: IChat[]): number => {
     const lastId: string = getLastElementId(chats);
     if (lastId) {
       return +lastId;
     }
     return 0;
-  }
+  }, [chats])
+
+  const createChat = useCallback((name) => {
+    const newId = getLastId(chats) + 1 + '';
+    dispatch(addChat({ name, id: newId }));
+  }, [chats, dispatch, getLastId]);
 
   function getLastElementId(array: IChat[]) {
     return array.slice(-1)[0].id;

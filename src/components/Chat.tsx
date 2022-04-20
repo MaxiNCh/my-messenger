@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
 import IChat from "../interfaces/Chat";

@@ -15,7 +15,7 @@ const Profile = () => {
 
   return (
     <>
-      <h1 className="header">Profile</h1>
+      <h1 className="page-header">Profile</h1>
       <div style={{ textAlign: 'center' }}>
         {showName && <span style={{ fontSize: '1.3rem' }}>{name}</span>}
         <Button color="success" onClick={clickHandler}>{showName ? 'Hide' : 'Show'}</Button>

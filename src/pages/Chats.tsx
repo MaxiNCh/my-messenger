@@ -12,7 +12,6 @@ import { shallowEqual } from "react-redux";
 function Chats() {
   const navigate = useNavigate();
   const chatList = useAppSelector(selectChats, shallowEqual);
-  const messages = useAppSelector(selectMessages, shallowEqual);
   const { chatId } = useParams();
 
   let currentChat: IChat | undefined;
