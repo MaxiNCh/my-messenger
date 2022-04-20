@@ -1,7 +1,12 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { chatsReducer } from "./chats/reducer";
 import { messagesReducer } from "./messages/reducer";
 import { profileReducer } from "./profile/reducer";
+import createSagaMiddleware from "redux-saga"
+import addMessageFlow from "./messages/sagas";
+
+const composeEnchancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   profile: profileReducer,
@@ -11,8 +16,10 @@ const rootReducer = combineReducers({
 
 export const store = createStore(
   rootReducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnchancers(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(addMessageFlow);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
