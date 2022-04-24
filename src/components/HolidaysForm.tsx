@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCountryToFetch } from "../store/holidays/actionCreators";
 import { fetchHolidays } from "../store/holidays/routines";
 import { countries } from "../utils/countries";
-import FormCountryInput from "./FormCountyInput";
+import FormCountryInput from "./FormCountryInput";
 import FormYearSelect from "./FormYearSelect";
 
 function HolidaysForm() {

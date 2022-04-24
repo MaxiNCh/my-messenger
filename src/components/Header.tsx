@@ -10,6 +10,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import HeaderAuthButton from './HeaderAuthButton';
+import { useSelector } from 'react-redux';
+import { selectUserName } from '../store/user/selectors';
 
 const pages = [
   {
@@ -32,8 +35,9 @@ const pages = [
 
 const LOGO = 'My-Messenger'
 
-const ResponsiveAppBar = () => {
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const userName = useSelector(selectUserName);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -112,9 +116,11 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
+          {userName && <div>Hello {userName}!</div>}
+          <HeaderAuthButton />
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Header;
