@@ -6,17 +6,13 @@ import AuthSignUp from "../components/AuthSignUp";
 
 function Auth() {
   const location = useLocation();
-  let signUp: string | null = '';
+  const [signUp, setSignUp] = useState<string | null>('');
 
-  setSignUp()
-
-  function setSignUp() {
+  useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const signUpParam = queryParams.get('signup');
-    if (signUpParam !== signUp) {
-      signUp = signUpParam;
-    }
-  }
+    setSignUp(signUpParam);
+  }, [location])
 
   return (
     <Container>
