@@ -2,7 +2,14 @@ import { AnyAction } from "redux";
 import { SET_COUNTRY } from "./actionCreators";
 import { fetchHolidays } from "./routines";
 
-const initialState = {
+export type HolidaysState = {
+  holidays: {}[] | null,
+  loading: boolean,
+  error: string | null,
+  country: ''
+}
+
+const initialState: HolidaysState = {
   holidays: null,
   loading: false,
   error: null,
