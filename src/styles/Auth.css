@@ -1,0 +1,25 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.auth-form .MuiOutlinedInput-root {
+  margin-bottom: 1rem;
+}
+
+.auth-form__buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.auth-form__submit.MuiButton-root {
+  max-width: 120px;
+}
+
+.auth-form .MuiAlert-outlinedError {
+  border: none;
+  color: #ef5350;
+}

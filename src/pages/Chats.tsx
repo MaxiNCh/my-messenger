@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ChatList from "../components/ChatList";
 import Chat from "../components/Chat";
 import IChat from "../interfaces/Chat";
-import ChatForm from "../components/ChatFrom";
+import ChatForm from "../components/ChatForm";
 import { useAppSelector } from "../hooks";
 import { selectChats } from "../store/chats/selectors";
 import { selectMessages } from "../store/messages/selectors";

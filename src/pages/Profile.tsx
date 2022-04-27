@@ -2,7 +2,6 @@ import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleName } from '../store/profile/actions';
 import { selectName, selectShowName } from '../store/profile/selectors';
-import '../styles/Profile.css';
 
 const Profile = () => {
   const dispatch = useDispatch();

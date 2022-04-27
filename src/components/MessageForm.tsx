@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send'
 
-import '../styles/Form.css';
+import '../styles/Message.css';
 
 interface IFormProps {
   onSubmit(text: string): void
@@ -31,7 +31,7 @@ function MessageForm({ onSubmit }: IFormProps) {
   }
 
   return (
-    <form className="msg-form" onSubmit={onFormSubmit}>
+    <form className="message-form" onSubmit={onFormSubmit}>
       <TextField
         inputRef={messageInput}
         id="text"
